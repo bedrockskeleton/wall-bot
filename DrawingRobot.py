@@ -18,7 +18,7 @@ class Pulley: # Pulley class deals with the motors directly
         
     def extend(self, distance): # Converts distance to motor rotations
         rotations = distance / (pi * self.pDiameter)
-        self.motor.run_for_rotations(self.rot_direction * rotations)
+        self.motor.run_for_rotations(self.rot_direction * rotations, blocking=False)
         self.length += distance
     
     def calibrate(self, distance):
@@ -26,6 +26,9 @@ class Pulley: # Pulley class deals with the motors directly
         self.extend(-self.maxLength)
         self.extend(distance)
         self.length = distance
+        
+    def release(self, release):
+        self.motor.release = release
 
 class WallBot: # WallBot class coordinates the two pulleys
     def __init__(self):
@@ -36,6 +39,9 @@ class WallBot: # WallBot class coordinates the two pulleys
         self.pulleySeparation = 4.15
         [pul.calibrate(36) for pul in self.pulleys] # Calibrate both pulleys to 36 inches (3 feet)
 
+    def end(self):
+        self.release()
+    
     def calibrate(self, distance): # Dual-calibration function
         [pul.calibrate(distance) for pul in self.pulleys]
 
@@ -44,6 +50,9 @@ class WallBot: # WallBot class coordinates the two pulleys
 
     def getCoords(self): # Use math to return the X/Y coordinates of the wallbot
         pass
+    
+    def release(self, release):
+        [pul.release(release) for pul in self.pulleys]
 
     def moveTo(self, x, y): # Converts X/Y coordinates to lengths for the pulleys
         # Bottom points of the self.pulleySeparation base
@@ -59,3 +68,5 @@ class WallBot: # WallBot class coordinates the two pulleys
         self.right.extend(self.right.length - newRight)
 
 wallbot = WallBot()
+wallbot.calibrate(6)
+wallbot.end()
