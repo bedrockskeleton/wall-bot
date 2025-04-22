@@ -5,3 +5,13 @@ The Raspberry Pi is a small, low-cost computer about the size of a credit card. 
 
 ![image](https://github.com/user-attachments/assets/32da7c9e-c094-47df-b7ef-89e8f2c31c7e)
 
+# How Is Raspberry Pi Made?
+The Raspberry Pi is made of many small parts that work together to make it a working computer. The most important part is the processor, which is like the brain of the computer. It runs all the programs and controls how everything works. It also has RAM, which is the memory that helps it do tasks quickly. There are USB ports where you can plug in a mouse, keyboard, or other devices. It has an HDMI port so you can connect it to a screen or TV to see what you’re doing. The Raspberry Pi does not have a built-in hard drive like big computers. Instead, it uses a microSD card to store all the files and the operating system, which is the software that helps it work. Some models also have Wi-Fi and Bluetooth, so you can connect to the internet or other devices without wires. It also has a special part called GPIO pins, which let you connect things like lights, buttons, or sensors for fun projects. Even though the Raspberry Pi is very small and cheap, it is carefully made with all the important parts needed to learn, build, and explore computers and electronics in a simple way.
+
+
+
+
+
+
+
+
