@@ -55,49 +55,49 @@ Line Following Bot Code
 ```
 class Follower:
     def __init__(self):
-        self.left = Wheel('A')
-        self.right = Wheel('B')
-        self.wheels = [self.left.motor, self.right.motor]
-        [x.stop() for x in self.wheels]
+        self.left = Motor('A') # Left motor
+        self.right = Motor('B') # Right motor
+        self.wheels = [self.left, self.right] # Putting each motor in a list so it's easier to manipulate both
+        [x.stop() for x in self.wheels] # Stopping both wheels
         
-        speed = 25
-        self.left.motor.set_default_speed(-speed)
-        self.right.motor.set_default_speed(speed)
+        speed = 25 # Default speed
+        self.left.set_default_speed(-speed) # Left motor is reversed because it's attached backwards
+        self.right.set_default_speed(speed)
         
         self.sensor = ColorSensor('C') # Color sensor
         self.color = 'black' # The color the robot looks for
+        self.error = 'red' # This color stops the robot
         self.start = False
-        
-    def run(self):
-        left = True
-        self.start = True
-        while self.start: # While robot is started
-            print(left, self.sensor.get_color())
-            if left: # Sweeps the robot left over the line
-                if self.sensor.get_color() == self.color: # If the initial color is black, sweep until the robot leaves it
-                    self.right.motor.start()
-                    while self.sensor.get_color() == self.color:
-                        pass
-                    self.right.motor.stop()
-                    left = False
-                else:
-                    self.right.motor.start()
-                    while self.sensor.get_color() != self.color:
-                        pass
-                    self.right.motor.stop()                    
-            else:
-                if self.sensor.get_color() == self.color:
-                    self.left.motor.start()
-                    while self.sensor.get_color() == self.color:
-                        pass
-                    self.left.motor.stop()
-                    left = True
-                else:
-                    self.left.motor.start()
-                    while self.sensor.get_color() != self.color:
-                        pass
-                    self.right.motor.stop()
 ```
+This Follower class tells the robot to move the right and left motor back and it sets the color to follow to black and when the robot sees red to stop.
+```
+ def turn(self, left):
+        if left:
+            self.left.stop()
+            self.right.start()
+            # Stops left motor and starts the right, turning the vehicle left
+        else:
+            self.right.stop()
+            self.left.start()
+            # Stops right motor and starts the left, turning the vehicle right
+```
+
+The Turn function makes the comand to start turning the right motor making the robot go left. If it is not turning left then it makes the right motor stop and the left motor run making the robot turn to the right.
+```
+  def end(self):
+        self.start = False
+        [x.stop() for x in self.wheels] # Stops both motors
+```
+
+The End function makes both motors stop at the same time. This is used when the robot detects the color red so that it knows it should stop and is going outside of the bounderies. 
+```
+def debug_color(self):
+        while True:
+            print(self.sensor.get_color())
+```
+
+The debug_color function makes it so that when the code it running and the robot is moving around it is printing out the color that it is detecting.
+
 # Previous Wall Bot Robot
 
 ![image](https://github.com/user-attachments/assets/0c563bb6-1b90-4d5d-a23f-0582f761b872)
@@ -114,6 +114,7 @@ The line following robot has
 - 3D Printed Base
 ![image](https://github.com/user-attachments/assets/dd129217-2e23-4e36-b2de-f5c59f068721)
 https://www.thingiverse.com/thing:5064470
+    - This is a Raspberry Pi Maker Plate which is the size of the Raspberry Pi in the center and on the edges are the size of the black lego connectors so that we are able to build around the Raspberry Pi without adding weight on the top of the Raspberry Pi.
 
 
 
