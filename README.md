@@ -112,5 +112,8 @@ The line following robot has
 - A Color Sensor
 - A Raspberry Pi
 - 3D Printed Base
+![image](https://github.com/user-attachments/assets/dd129217-2e23-4e36-b2de-f5c59f068721)
+https://www.thingiverse.com/thing:5064470
+
 
 
