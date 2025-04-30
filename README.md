@@ -20,6 +20,8 @@ So we decided to change or original idea of the Wall Bot to the Car Bot. The Car
 
 # Wall Bot Code VS Line Following Bot Code
 
+Wall Bot Code
+
 ```
 class Pulley: # Pulley class deals with the motors directly
     def __init__(self, port, rot_direction=False):
@@ -49,5 +51,52 @@ class Pulley: # Pulley class deals with the motors directly
   ```
 We had to create a class called Pulley which rotated the motors and we had to make the turn of the motors into a distance integer so that we could get it to calibrate and release the same distance wit each motor. With the Line Following Bot we were able to make it simplier because it will move forward by the wheels turning left until it sees the black line and right until it sees the black line. So there was no math conversion that needed to be created when coding this so that it just uses a basic algorithm to move the robot.
 
+Line Following Bot Code
+```
+class Follower:
+    def __init__(self):
+        self.left = Wheel('A')
+        self.right = Wheel('B')
+        self.wheels = [self.left.motor, self.right.motor]
+        [x.stop() for x in self.wheels]
+        
+        speed = 25
+        self.left.motor.set_default_speed(-speed)
+        self.right.motor.set_default_speed(speed)
+        
+        self.sensor = ColorSensor('C') # Color sensor
+        self.color = 'black' # The color the robot looks for
+        self.start = False
+        
+    def run(self):
+        left = True
+        self.start = True
+        while self.start: # While robot is started
+            print(left, self.sensor.get_color())
+            if left: # Sweeps the robot left over the line
+                if self.sensor.get_color() == self.color: # If the initial color is black, sweep until the robot leaves it
+                    self.right.motor.start()
+                    while self.sensor.get_color() == self.color:
+                        pass
+                    self.right.motor.stop()
+                    left = False
+                else:
+                    self.right.motor.start()
+                    while self.sensor.get_color() != self.color:
+                        pass
+                    self.right.motor.stop()                    
+            else:
+                if self.sensor.get_color() == self.color:
+                    self.left.motor.start()
+                    while self.sensor.get_color() == self.color:
+                        pass
+                    self.left.motor.stop()
+                    left = True
+                else:
+                    self.left.motor.start()
+                    while self.sensor.get_color() != self.color:
+                        pass
+                    self.right.motor.stop()
+```
 
 
