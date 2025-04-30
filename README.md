@@ -47,7 +47,7 @@ class Pulley: # Pulley class deals with the motors directly
     def release(self, release):
         self.motor.release = release
   ```
-We had to create a class called Pulley which rotated the motors and we had to make the turn of the motors into a distance integer so that we could get it to calibrate and release the same distance wit each motor. With the Line Following Bot we were able to make it simplier  
+We had to create a class called Pulley which rotated the motors and we had to make the turn of the motors into a distance integer so that we could get it to calibrate and release the same distance wit each motor. With the Line Following Bot we were able to make it simplier because it will move forward by the wheels turning left until it sees the black line and right until it sees the black line. So there was no math conversion that needed to be created when coding this so that it just uses a basic algorithm to move the robot.
 
 
 
