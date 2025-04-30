@@ -98,6 +98,10 @@ class Follower:
                         pass
                     self.right.motor.stop()
 ```
+# Previous Wall Bot Robot
+
+![image](https://github.com/user-attachments/assets/0c563bb6-1b90-4d5d-a23f-0582f761b872)
+
 # Final Line Following Bot Compenets
 
 ![image](https://github.com/user-attachments/assets/a101454c-57a9-4aa2-acd4-658baad782af)
