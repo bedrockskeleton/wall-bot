@@ -18,6 +18,7 @@ The Wall bot was the original plan of the project. The Wall bot was composed of 
 
 So we decided to change or original idea of the Wall Bot to the Car Bot. The Car Bot is composed of two angular motors, two samll wheels, and a sensor camrea, The Car Bot has a camera at the bottom of the Raspberry pi near the wheels. The Car bot is suppose to detect the diffrent colors and move around when it identify the color.
 
+# Wall Bot Code
 
 
 
