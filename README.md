@@ -98,5 +98,15 @@ class Follower:
                         pass
                     self.right.motor.stop()
 ```
+# Final Line Following Bot Compenets
+
+![image](https://github.com/user-attachments/assets/a101454c-57a9-4aa2-acd4-658baad782af)
+
+The line following robot has
+- Two Motors/Wheels
+- A Battery
+- A Color Sensor
+- A Raspberry Pi
+- 3D Printed Base
 
 
